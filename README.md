@@ -1,1 +1,1 @@
-# parabricks-benchmarks
+# Parabricks Benchmarking Guide
