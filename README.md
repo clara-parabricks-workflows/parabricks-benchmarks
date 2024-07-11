@@ -55,7 +55,8 @@ This is SEQC-II data for tumor and normal from XYZ dataset.
 | [SRR7890824_2.fastq.gz](https://s3.console.aws.amazon.com/s3/object/parabricks.benchmark.datasets?region=us-east-1&bucketType=general&prefix=SEQC-II_T46_N49_WGS/SRR7890824_2.fastq.gz) | X GB |
 | [SRR7890827_1.fastq.gz](https://s3.console.aws.amazon.com/s3/object/parabricks.benchmark.datasets?region=us-east-1&bucketType=general&prefix=SEQC-II_T46_N49_WGS/SRR7890827_1.fastq.gz) | X GB |
 | [SRR7890827_2.fastq.gz](https://s3.console.aws.amazon.com/s3/object/parabricks.benchmark.datasets?region=us-east-1&bucketType=general&prefix=SEQC-II_T46_N49_WGS/SRR7890827_2.fastq.gz) | X GB |
-
+| [SRR7890824.bam]() | X GB |
+| [SRR7890827.bam]() | X GB |
 ### Reference 
 
 This is the GRCh38 reference from XYZ. 
