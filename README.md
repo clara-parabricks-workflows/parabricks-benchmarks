@@ -6,7 +6,7 @@ This purpose of this guide is to allow third parties to benchmark Parabricks usi
 
 ### Hardware
 
-Two configurations are supported in this guide. The first configuration provides the lowest cost while still meeting the [minimum system requirements for Parabricks](https://docs.nvidia.com/clara/parabricks/latest/gettingstarted.html#installation-requirements) and uses the L4/A10 GPUs, while the second configuration yields the highest performance and uses A100/H100 GPUs. 
+Two configurations are supported in this guide. The first configuration provides the lowest cost while still meeting the [minimum system requirements for Parabricks](https://docs.nvidia.com/clara/parabricks/latest/gettingstarted.html#installation-requirements) and uses the A10/L4 GPUs, while the second configuration yields the highest performance and uses A100/H100 GPUs. 
 
 #### Lowest Cost
 
@@ -34,40 +34,50 @@ Two configurations are supported in this guide. The first configuration provides
 
 ## Dataset 
 
-We provide publicly available datasets for all workflows to standardize these benchmarks. It is recommended to download the data to the `data` folder in this repo, as that's where the provided benchmark scripts will assume the data is. 
+We provide publicly available datasets for all workflows to standardize these benchmarks. To download the data, run `download_data.sh`. This script will create a folder in the root directory of this repository called `data` which will contain all the data needed to run all of the benchmarks. Once downloaded the directory should look like this: 
 
-### Germline
+```
+$ tree data 
+[ insert data tree here]
+```
 
-This is a 30x human genome from HG002 from the brain genomics dataset. 
-
-| Sample | Size |
-| -------- | ------- |
-| [HG002.novaseq.pcr-free.30x.R1.fastq.gz](https://storage.googleapis.com/brain-genomics-public/research/sequencing/fastq/novaseq/wgs_pcr_free/30x/HG002.novaseq.pcr-free.30x.R1.fastq.gz ) | X GB | 
-| [HG002.novaseq.pcr-free.30x.R2.fastq.gz](https://storage.googleapis.com/brain-genomics-public/research/sequencing/fastq/novaseq/wgs_pcr_free/30x/HG002.novaseq.pcr-free.30x.R2.fastq.gz) | X GB | 
-
-### Somatic
-
-This is SEQC-II data for tumor and normal from XYZ dataset. 
-
-| Sample | Size |
-| -------- | ------- |
-| [SRR7890824_1.fastq.gz](https://s3.console.aws.amazon.com/s3/object/parabricks.benchmark.datasets?region=us-east-1&bucketType=general&prefix=SEQC-II_T46_N49_WGS/SRR7890824_1.fastq.gz) | X GB |
-| [SRR7890824_2.fastq.gz](https://s3.console.aws.amazon.com/s3/object/parabricks.benchmark.datasets?region=us-east-1&bucketType=general&prefix=SEQC-II_T46_N49_WGS/SRR7890824_2.fastq.gz) | X GB |
-| [SRR7890827_1.fastq.gz](https://s3.console.aws.amazon.com/s3/object/parabricks.benchmark.datasets?region=us-east-1&bucketType=general&prefix=SEQC-II_T46_N49_WGS/SRR7890827_1.fastq.gz) | X GB |
-| [SRR7890827_2.fastq.gz](https://s3.console.aws.amazon.com/s3/object/parabricks.benchmark.datasets?region=us-east-1&bucketType=general&prefix=SEQC-II_T46_N49_WGS/SRR7890827_2.fastq.gz) | X GB |
-| [SRR7890824.bam]() | X GB |
-| [SRR7890827.bam]() | X GB |
-### Reference 
-
-This is the GRCh38 reference from XYZ. 
-
-| Sample | Size |
-| -------- | ------- |
-| [GRCh38_GIABv3_no_alt_analysis_set_maskedGRC_decoys_MAP2K3_KMT2C_KCNJ18.fasta.gz](https://ftp.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/references/GRCh38/GRCh38_GIABv3_no_alt_analysis_set_maskedGRC_decoys_MAP2K3_KMT2C_KCNJ18.fasta.gz ) | X GB |
+The total size of the dataset is X GB. 
 
 ## Running Benchmarks 
 
-This guide provides benchmarks for six Parabricks workflows: fq2bam, bwameth, deepvariant, haplotypecaller, somatic (mutect2), and deepsomatic. Bash scripts for these benchmarks can be found in the corresponding folders within this repository. 
+This guide provides benchmarks for six Parabricks workflows: [`fq2bam`](https://docs.nvidia.com/clara/parabricks/latest/documentation/tooldocs/man_fq2bamfast.html), [`bwa-meth`](https://docs.nvidia.com/clara/parabricks/latest/documentation/tooldocs/man_fq2bam_meth.html), [`deepvariant`](https://docs.nvidia.com/clara/parabricks/latest/documentation/tooldocs/man_deepvariant_germline.html), [`haplotypecaller`](https://docs.nvidia.com/clara/parabricks/latest/documentation/tooldocs/man_germline.html), [`mutect2`](https://docs.nvidia.com/clara/parabricks/latest/documentation/tooldocs/man_somatic.html), and [`deepsomatic`](https://docs.nvidia.com/clara/parabricks/latest/documentation/tooldocs/man_deepsomatic.html). Each workflow has its own folder in this repo and contains two run scripts, one for running on A10/L4 GPUs, the most cost efficient hardware, and one for running on A100/H100 GPUs, the hardware with the best performance. 
+
+The benchmarks scripts can be run individually or all together. All the output data will go to `data/output` and all the logs will go to `data/logs`. 
+
+Before running any scripts, two environment variables must be exported. 
+
+The first environment variable is `DATA_FOLDER` and it should point to the `data` folder generated by `download_data.sh`. It must be the full path, which will be different for every user. 
+
+```
+export DATA_FOLDER=/path/to/repo/data
+```
+
+The second environment variable will tell the scripts which version of Parabricks to use, be specifying a Docker container from [NGC](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/clara/containers/clara-parabricks). 
+
+```
+export PB_CONTAINER=nvcr.io/nvidia/clara/clara-parabricks:4.3.0-1
+```
+
+### Run One Benchmark
+
+For example, to run the fq2bam benchmark for a100_h100 from the root of this repository, the commmand would be: 
+
+```
+benchmark-scripts/fq2bam/run_a100_h100.sh 
+```
+
+### Run All Benchmarks 
+
+For example, to run all the benchmarks for a100_h100 from the root of this repository, the command would be: 
+
+```
+find benchmark-scripts -type f -name "*_a100_h100.sh" | sh 
+```
 
 ## Cost per Genome
 
