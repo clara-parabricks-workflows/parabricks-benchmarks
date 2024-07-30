@@ -13,16 +13,16 @@ Two configurations are supported in this guide. The first configuration provides
 | CSP | Instance Type | GPU | vCPU | Memory (GB) | On Demand Price/hr |
 | -------- | ------- | ------- | -------- | ------- | ------- |
 | AWS | g5.24xlarge | 4 A10 | 96 | 384 | $8.144 |
-| GCP |  |  |  |  |  |
+| GCP | g2-standard-96 | 8 L4 | 96 | 384 |  |
 | Azure |  |  |  |  |  |
 
 #### Highest Performance
 
 | CSP | Instance Type | GPU | vCPU | Memory (GB) | On Demand Price/hr |
 | -------- | ------- | ------- | -------- | ------- | ------- |
-| AWS |  |  |  |  |  |
-| GCP |  |  |  |  |  |
-| Azure |  |  |  |  |  |
+| AWS | p5.48xlarge	 | 8 H100 | 192 | 2048 |  |
+| GCP | a3-highgpu-8g | 8 H100 | 208 | 1872 |  |
+| Azure | NC80adis H100 v5 | 2 H100 | 80 | 640 |  |
 
 ### Software 
 
