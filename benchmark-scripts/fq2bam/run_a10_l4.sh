@@ -14,7 +14,6 @@ docker run --rm --gpus all \
     --ref /raid/ref/Homo_sapiens_assembly38.fasta \
     --in-fq ${FASTQ_READ1} ${FASTQ_READ2} \
     --out-bam output/${BENCHMARK_NAME}.bam \
-    --out-variants output/${BENCHMARK_NAME}.vcf \
     --gpusort \
     --gpuwrite \
     --run-partition \

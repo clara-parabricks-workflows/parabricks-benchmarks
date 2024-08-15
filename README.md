@@ -26,19 +26,32 @@ Two configurations are supported in this guide. The first configuration provides
 
 ### Software 
 
-| Requirement | Version |
+| Requirement | Minimum Version |
 | -------- | ------- |
 | NVIDIA Driver | 535 |
 | Operating System | Ubuntu 22.04.2 LTS |
-| Docker | >19.03 |
+| Docker | 19.03 |
+| SRA Toolkit | 3.1.1 |
+
+To install SRA Toolkit for Ubuntu, download and unzip the tarball and add the `bin` folder to the path as follows: 
+
+```
+# Download the tarball
+wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/3.1.1/sratoolkit.3.1.1-ubuntu64.tar.gz
+
+# Unzip the tarball 
+tar xzf sratoolkit.3.1.1-ubuntu64.tar.gz 
+
+# Add to PATH 
+export PATH=$PATH:`pwd`/sratoolkit.3.1.1-ubuntu64/bin
+```
 
 ## Dataset 
 
-We provide publicly available datasets for all workflows to standardize these benchmarks. To download the data, run `download_data.sh`. This script will create a folder in the root directory of this repository called `data` which will contain all the data needed to run all of the benchmarks. Once downloaded the directory should look like this: 
+We provide publicly available datasets for all workflows to standardize these benchmarks. To download the data, run `download_and_process_data.sh`. This script requires GPUs (for conversion of somatic fastqs to bams for the DeepSomatic benchmark) and will create a folder in the root directory of this repository called `data` which will contain all the data needed to run all of the benchmarks. Once downloaded the directory should look like this: 
 
 ```
 $ tree data 
-[ insert data tree here]
 ```
 
 The total size of the dataset is X GB. 
