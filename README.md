@@ -13,16 +13,21 @@ Two configurations are supported in this guide. The first configuration provides
 | CSP | Instance Type | GPU | vCPU | Memory (GB) | On Demand Price/hr |
 | -------- | ------- | ------- | -------- | ------- | ------- |
 | AWS | g5.24xlarge | 4 A10 | 96 | 384 | $8.144 |
-| GCP |  |  |  |  |  |
-| Azure |  |  |  |  |  |
+| AWS | g6.24xlarge | 4 L4 | 96 | 384 | $6.675 |
+| GCP | g2-standard-96 | 8 L4 | 96 | 384 | $9.267 |
 
 #### Highest Performance
 
 | CSP | Instance Type | GPU | vCPU | Memory (GB) | On Demand Price/hr |
 | -------- | ------- | ------- | -------- | ------- | ------- |
-| AWS |  |  |  |  |  |
-| GCP |  |  |  |  |  |
-| Azure |  |  |  |  |  |
+| AWS | p5.48xlarge	 | 8 H100 | 192 | 2048 | $98.32 |
+| AWS | p4d.24xlarge | 8 A100 | 96 | 1152 | $32.77 |
+| GCP | a3-highgpu-8g | 8 H100 | 208 | 1872 | $88.49 |
+| GCP | a2-ultragpu-8g | 8 A100 | 96 | 1360 | $49.981 |
+| Azure | NC80ads H100 v5 | 2 H100 | 80 | 640 | $13.96 |
+| Azure | NC96ads A100 v4 | 4 A100 | 96 | 880 | $14.692 |
+
+Note: Prices reflect July 2024 
 
 ### Software 
 
