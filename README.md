@@ -1,6 +1,6 @@
 # Parabricks Benchmarking Guide
 
-This purpose of this guide is to allow third parties to benchmark Parabricks using the most optimal hardware and software configurations. There is an emphasis on running in the cloud as this guide provides suggsted cloud instances on the major clouds. 
+This purpose of this guide is to allow third parties to benchmark Parabricks using the most optimal hardware and software configurations. There is an emphasis on running in the cloud as this guide provides suggested cloud instances on the major clouds. 
 
 ## Requirements
 
